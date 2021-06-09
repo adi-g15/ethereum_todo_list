@@ -5,7 +5,6 @@
   "repository": "https://github.com/adi-g15/ethereum_todo_list.git",
   "author": "Aditya Gupta <ag15035@gmail.com>",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "dev": "parsel src/index.html"
   },
