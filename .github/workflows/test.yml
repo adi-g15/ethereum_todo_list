@@ -9,7 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Dependencies & Ganache
-      run: yarn add gatsby-cli --dev && export PATH=$HOME/.yarn/bin:$PATH
+      run: yarn add gatsby-cli --dev
+    - name: Update PATH
+      run: export PATH=$HOME/.yarn/bin:$PATH && echo $PATH && ls $HOME/.yarn/bin
 #  testing:
 #    runs-on: ubuntu-latest
 #    needs: dependencies
@@ -17,7 +19,7 @@ jobs:
     - name: Start ganache
       run: ganache-cli -p 7545 -a 4 -e 10&
     - name: Run truffle test
-      run: truffle test
+      run: yarn exec truffle test
     - name: Stop ganache
       run: ps ax | grep ganache-cli | head -n1 | awk '{print $1}' | xargs kill
 
