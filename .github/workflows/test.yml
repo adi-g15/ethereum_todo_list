@@ -8,10 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
     - name: Install Dependencies & Ganache
       run: yarn add gatsby-cli --dev
     - name: Update PATH
-      run: export PATH=$HOME/.yarn/bin:$PATH && echo $PATH && ls $HOME/.yarn/bin
+      run: export PATH=$HOME/.yarn/bin:$PATH && echo $PATH
+    - name: List home yarn bin
+      run:  ls $HOME/.yarn/bin
 #  testing:
 #    runs-on: ubuntu-latest
 #    needs: dependencies
