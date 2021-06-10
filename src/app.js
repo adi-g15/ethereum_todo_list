@@ -8,6 +8,7 @@ class TodoList {
 
 	constructor(app) {
 		this.TodoListContract = app.todolist;
+		this.account = app.account;
 
 		(async () => await this.sync())();
 	}
@@ -16,6 +17,7 @@ class TodoList {
 		const num_tasks = (await this.TodoListContract.num_tasks()).toNumber();
 		const todos = document.getElementById("todos");
 
+		todos.innerText = '';
 		for(let i=0; i<num_tasks; ++i) {
 			const raw_task = await this.TodoListContract.tasks(i);
 			this.raw_list.push(raw_task);
@@ -33,6 +35,7 @@ class TodoList {
 	}
 
 	async add(content) {
+		debugger
 		/*
 		 * The result object of this transaction
 		 *
@@ -42,10 +45,9 @@ class TodoList {
 		 * 	logs: []	// this array contains list of events emitted
 		 * }
 		 * */
-		const created_task = await this.TodoListContract.createTask(content);
+		const created_task = await this.TodoListContract.createTask(content, {from: this.account});
 
-		console.log(created_task);
-		this.todolist.push(content);
+		await this.sync();
 	}
 
 	async toggle_completed(index) {
@@ -118,8 +120,8 @@ class App {
 	}
 }
 
-// const app = new App()
-
+var app = new App()
+window.app = app;
 // document.isLoaded then
-// app.load()
+app.load()
 

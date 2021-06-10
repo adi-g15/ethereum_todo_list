@@ -1,0 +1,23 @@
+name: Truffle test
+
+on: ['push']
+
+jobs:
+   primary_job:
+#  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies & Ganache
+      run: yarn add gatsby-cli --dev
+#  testing:
+#    runs-on: ubuntu-latest
+#    needs: dependencies
+#    steps:
+    - name: Start ganache
+      run: ganache-cli -p 7545 -a 4 -e 10&
+    - name: Run truffle test
+      run: truffle test
+    - name: Stop ganache
+      run: ps ax | grep ganache-cli | head -n1 | awk '{print $1}' | xargs kill
+

@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethereum Todo</title>
-    <!--<script src="./app.js"></script>
-    -->
+    <script defer src="./app.js"></script>
+    <!--script>console.log("This load: ", App);</script-->
     <link rel="stylesheet" href="./style.css" />
 </head>
-<body onload="">
+<body>
     <header>
         <p id="account"></p>
         <hr />
@@ -22,10 +22,13 @@
             <ul id="todos">
             </ul>
     </main>
-    <script src="./app.js" />
-    <script>
+    <!--script>
+	    // object defined in external script not accessible here
+	    setTimeout(()=>{
+	    console.log("Loaded :", App)
+	    }, 3000);
 	let app = new App();
 	app.load();
-    </script>
+    </script-->
 </body>
 </html>
