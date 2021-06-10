@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Dependencies & Ganache
-      run: yarn add gatsby-cli --dev
+      run: yarn add gatsby-cli --dev && export PATH=$HOME/.yarn/bin:$PATH
 #  testing:
 #    runs-on: ubuntu-latest
 #    needs: dependencies
